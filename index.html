@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang='en'>
+
+<head>
+    <meta charset='UTF-8'>
+    <title> Centripetal Photography </title>
+    <meta name='author' content='Sarah Rosanna Busch'>
+    <meta name='description' content='Photography by Chris Perrier'>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'>
+    <link rel='stylesheet' href='styles.css'>
+    <link rel='icon shortcut' href='img/icon.png'>
+</head>
+
+<body onload='main.init()'>
+
+    <main id='homeView'>
+        <header>
+            <h1>
+                <img alt="Centripetal Photography" src="img/header.png" />
+            </h1>
+        </header>
+        <!-- figures get inserted here -->
+    </main> <!-- end of main#home -->
+
+    <main id='galleryView' style='display:none'>
+        <div id='galleryPhotos'>
+            <!-- thumbnail images displayed here -->
+        </div>
+    </main>
+
+    <main id='photoView' onclick='main.showFull(false)' style="display:none">
+        <img id='fullPhoto' src='img/logo.png' />
+    </main>
+
+    <main id="aboutView" style='display:none'>
+        <figure class='gallery'>
+            <img alt='dingo' src='img/Capture.PNG'/>
+        </figure>
+        <p class='about'>
+            blah blah blah
+        </p>
+    </main>
+
+    <button id='menuIcon' onclick='main.openMenu(true)'>
+        <div class='iconBar'></div>
+        <div class='iconBar'></div>
+        <div class='iconBar'></div>
+    </button>    
+    <div id='overlay' onclick='main.openMenu(false)' style='display:none'>
+        <!-- disables page behind menu when it's open -->
+    </div>
+    <nav class='menu' style='display:none'>
+        <button id='homeBtn' onclick='main.nav("home")' class='curPage'> home </button>
+        <!-- button for each category listed in photos.js get created here -->
+    </nav>
+
+    <script src='framework.js'></script>
+    <script src='scripts.js'></script>
+    <script src='photos.js'></script>
+</body>
+</html>

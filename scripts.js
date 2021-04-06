@@ -14,7 +14,8 @@ var main = (function() {
         clicked: '', //img.id of _clicked thumbnail
         firstImgIdx: 0, //first to display in gallery
         picsPerPage: 6, //num photos to display in gallery
-        zindex: 20
+        zindex: 20,
+        showingFull: false
     }; //static variables
 
     // brief: called from <body>'s onload event
@@ -37,7 +38,10 @@ var main = (function() {
         elem.right = SB.html.getElem('#right');
 
         createHomePage();
-        that.nav("home");
+        window.onhashchange = function() {
+            that.nav(location.hash.slice(1));
+        }
+        location.hash = "home";
     }
 
     // brief: menuIcon click event handler
@@ -54,6 +58,10 @@ var main = (function() {
     // brief: menu button click event handler
     // param: '' = id of <main> to display
     that.nav = function(page) { 
+        if(!location.hash.match(page)) {
+            location.hash = page;
+            return;
+        }
         console.log('loading ' + page + ' view');
         that.openMenu(false);
         that.showFull(false);
@@ -142,6 +150,7 @@ var main = (function() {
     /* brief: "thumbnail" onclick event; loads the pic selected in fullscreen mode
     * params: show - boolean to toggle fullscreen mode                         */
     that.showFull = function(show) {
+        if(show === vars.showingFull) {return;}
         console.log('showing fullscreen photo ' + show);
         if(show) {
             elem.photoView.style.display = 'block';
@@ -154,6 +163,7 @@ var main = (function() {
             elem.photoView.style.display = 'none';
             elem.body.style.overflowY = 'auto';
         }
+        vars.showingFull = show;
     }
 
     return that;
